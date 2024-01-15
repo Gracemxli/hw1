@@ -20,23 +20,21 @@ void split(Node*& in, Node*& odds, Node*& evens)
   /* Add code here */
 // WRITE YOUR CODE HERE
 
-if(in == NULL)
-return;
+  if(in == NULL)
+    return;
 
-//odd
-  if(in->value %2 != 0){
-    Node* p = in;
+  Node* p = in;
+  in = in->next;
+
+  if(p->value %2 != 0){
     p->next = odds;
     odds = p;
-  }
-  else{
-    Node* p = in;
+  } else {
     p->next = evens;
     evens = p;
   }
-  split(in->next, odds, evens);
-
-
+  split(in, odds, evens);
 }
+
 
 /* If you needed a helper function, write it here */

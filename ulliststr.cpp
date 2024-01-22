@@ -111,7 +111,7 @@ std::string* ULListStr::getValAtLoc(size_t loc) const{\
   while( p != NULL){
     int count = p->last - p->first;
     if ((total+count) >= loc){
-      return &p->val[p->first +loc];
+      return &p->val[p->first +loc- total];
     }    
     total += count;
     p = p->next;

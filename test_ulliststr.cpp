@@ -17,6 +17,6 @@ input.push_front("hello123456789" +i  );
 }
 cout << input.back() << "\n";
 cout << input.front() << "\n";
-cout << input.get(0)<< "\n";
+cout << input.get(10)<< "\n";
 input.print();
 }

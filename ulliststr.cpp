@@ -26,6 +26,36 @@ size_t ULListStr::size() const
 
 // WRITE YOUR CODE HERE
 
+void ULListStr::push_back(const std::string& val){
+  if (empty()||tail_->last == ARRSIZE){
+    Item* append = new Item(); 
+    Item* temp = tail_;
+    append->prev = temp;
+    tail_= append;
+    append->next = NULL;
+  }
+    //changing val
+    tail_->val[tail_->last] = val;
+    tail_->last++;
+
+  // check tail: if full make new Item; change tail; add val; change last; link the list(change prev and next)
+ 
+  
+}
+
+
+
+
+void pop_back();
+void push_front(const std::string& val);
+void pop_front();
+std::string const & back() const;
+std::string const & front() const;
+std::string* getValAtLoc(size_t loc) const;
+
+
+
+
 void ULListStr::set(size_t loc, const std::string& val)
 {
   std::string* ptr = getValAtLoc(loc);

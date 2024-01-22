@@ -2,6 +2,9 @@
 #define ULLISTSTR_H
 #include <string>
 
+#include <iostream>
+using namespace std; 
+
 #define ARRSIZE 10
 class ULListStr {
  public:
@@ -112,6 +115,24 @@ class ULListStr {
    * Deletes all items in the list
    */
   void clear();
+
+  void print() {
+    cout << "head_: ";
+    if (head_==NULL) cout << "NULL"; else cout << head_;
+    cout << "\ntail_: ";
+    if (head_==NULL) cout << "NULL"; else cout << tail_;
+    cout << "\nsize_:" << size_ << "\n";
+    for (Item*p=head_; p!=NULL; p=p->next) {
+      cout << "  Item: " << p << "\n  prev:";
+      if (p->prev==NULL) cout << "NULL"; else cout << p->prev;
+      cout << "\n  next:";
+      if (p->next==NULL) cout << "NULL"; else cout << p->next;
+      cout << "\n";
+      for (int ps=p->first; ps<p->last; ps++) {
+        cout << "[" << ps << "]: " << p->val[ps] << "\n";
+      }
+    }
+  }
 
  private:
   /** 

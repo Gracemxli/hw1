@@ -12,5 +12,11 @@ void printULL(ULListStr& name){
 int main(int argc, char* argv[])
 {
 ULListStr input;
-printULL(input);
+for (int i=0; i<11; i++){
+input.push_front("hello123456789" +i  );
+}
+cout << input.back() << "\n";
+cout << input.front() << "\n";
+cout << input.get(0)<< "\n";
+input.print();
 }

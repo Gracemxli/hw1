@@ -27,46 +27,97 @@ size_t ULListStr::size() const
 // WRITE YOUR CODE HERE
 
 void ULListStr::push_back(const std::string& val){
-  if (empty()||tail_->last == ARRSIZE){
-    Item* append = new Item(); 
-    Item* temp = tail_;
-    append->prev = temp;
-    tail_= append;
-    append->next = NULL;
+  if (empty()){
+    head_  = tail_ = new Item(); 
   }
-    //changing val
-    tail_->val[tail_->last] = val;
-    tail_->last++;
-
-  // check tail: if full make new Item; change tail; add val; change last; link the list(change prev and next)
- 
-  
+  if (tail_->last == ARRSIZE){
+    Item* append = new Item(); 
+    tail_->next = append; 
+    append->prev = tail_;
+    tail_= append;
+  }
+  //changing val
+  tail_->val[tail_->last] = val;
+  tail_->last++;
+  size_++;
 }
 
 
 
 
 void ULListStr::pop_back(){
+  if(empty()){
+    return;
+  }
+  
+  tail_->last--;
+  size_--;
+
+  if(tail_->first == tail_->last){
+    Item* temp = tail_;
+    tail_ = tail_->prev;
+    tail_ ->next= NULL;
+    delete temp; 
+  }
+
 
 }
 void ULListStr::push_front(const std::string& val){
-
+  if (empty()){
+    head_  = tail_ = new Item();
+    head_->first= ARRSIZE; 
+    head_->last =ARRSIZE; 
+  }
+  else if (tail_->first == 0){
+    Item* append = new Item(); 
+    head_->prev = append; 
+    append->next = head_;
+    head_ = append;
+    head_->first= ARRSIZE; 
+    head_->last =ARRSIZE;
+  }
+  //changing val
+  head_->first--;
+  head_->val[head_->first] = val;
+  size_--;
 }
-void ULListStr::pop_front(){
 
+void ULListStr::pop_front(){
+  if(empty()){
+    return;
+  }
+  
+  head_->first++;
+  size_--;
+
+  if(head_->first == head_->last){
+    Item* temp = head_;
+    head_ = head_->next;
+    head_ ->prev= NULL;
+    delete temp; 
+  }
 }
 std::string const & ULListStr::back() const{
-  return get(0);
+  return tail_->val[tail_->last-1];
 }
 std::string const & ULListStr::front() const{
-    return get(0);
+    return head_->val[head_->first];
 
 }
-std::string* ULListStr::getValAtLoc(size_t loc) const{
-  std::string const test= get(0);
+std::string* ULListStr::getValAtLoc(size_t loc) const{\
+  
+  int total = 0; 
+  Item * p = head_;
+  while( p != NULL){
+    int count = p->last - p->first;
+    if ((total+count) >= loc){
+      return &p->val[p->first +loc];
+    }    
+    total += count;
+    p = p->next;
+  }
   return NULL;
 }
-
 
 
 

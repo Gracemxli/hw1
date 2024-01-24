@@ -332,11 +332,16 @@ TEST(ListRemove, OneItemBack)
 {
 	ULListStr list;
 
-	list.push_back("a");
+	//list.push_back("a");
+	list.push_front("a");
 
 	ASSERT_EQ("a", list.get(0));
 
-	list.pop_back();
+	list.print();
+	//list.pop_back();
+	list.pop_front();
+
+	list.print();
 
 	ASSERT_EQ(0, list.size());
 }

@@ -60,6 +60,9 @@ void ULListStr::pop_back(){
       tail_ ->next= NULL;
     delete temp; 
   }
+  if(empty()){
+    head_=NULL;
+  }
 
 
 }
@@ -97,6 +100,9 @@ void ULListStr::pop_front(){
     if(head_!=NULL)
     head_ ->prev= NULL;
     delete temp; 
+  }
+  if(empty()){
+    tail_=NULL;
   }
 }
 std::string const & ULListStr::back() const{

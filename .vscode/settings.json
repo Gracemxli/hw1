@@ -61,6 +61,11 @@
             "cwd": "/Users/graceli/Documents/GitHub/hw1",
             "binaryPath": "/Users/graceli/Documents/GitHub/hw1/test_ulliststr",
             "binaryArgs": []
+        },
+        {
+            "cwd": "/Users/graceli/Documents/GitHub/hw1",
+            "binaryPath": "/Users/graceli/Documents/GitHub/hw1/grade_ulliststr",
+            "binaryArgs": []
         }
     ]
 }

@@ -60,7 +60,7 @@ std::vector<std::string> makeRandomAlphaStringVector(size_t count, Seed seed, si
 	randEngine.seed(seed);
 
 	// have each byte be a character between a and z
-	std::uniform_int_distribution<char> distributor('a', 'z');
+	std::uniform_int_distribution<> distributor('a', 'z');
 
 	// generate the vector
 	std::vector<std::string> randomVector;
@@ -106,6 +106,7 @@ testing::AssertionResult checkListContent(ULListStr *const list, std::vector<std
 	std::stringstream failureMessage;
 	failureMessage << "List content mismatch: ";
 	bool contentMismatch = false;
+	list->print(); //delete later
 
 	for(size_t index = 0; index < list->size(); ++index)
 	{
@@ -178,6 +179,7 @@ TEST(ListInsertFront, ThreeItemAdd)
 
 	// then we create a new list with that data
 	ULListStr * populatedList = makeList(contents, false);
+	populatedList->print(); //delete later
 
 	// then we assert that the list contains that data
 	EXPECT_TRUE(checkListContent(populatedList, contents));

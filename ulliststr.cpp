@@ -56,7 +56,8 @@ void ULListStr::pop_back(){
   if(tail_->first == tail_->last){
     Item* temp = tail_;
     tail_ = tail_->prev;
-    tail_ ->next= NULL;
+    if(tail_!=NULL)
+      tail_ ->next= NULL;
     delete temp; 
   }
 
@@ -79,7 +80,7 @@ void ULListStr::push_front(const std::string& val){
   //changing val
   head_->first--;
   head_->val[head_->first] = val;
-  size_--;
+  size_++;
 }
 
 void ULListStr::pop_front(){
@@ -93,6 +94,7 @@ void ULListStr::pop_front(){
   if(head_->first == head_->last){
     Item* temp = head_;
     head_ = head_->next;
+    if(head_!=NULL)
     head_ ->prev= NULL;
     delete temp; 
   }
@@ -110,7 +112,7 @@ std::string* ULListStr::getValAtLoc(size_t loc) const{\
   Item * p = head_;
   while( p != NULL){
     int count = p->last - p->first;
-    if ((total+count) >= loc){
+    if ((total+count) > loc){
       return &p->val[p->first +loc- total];
     }    
     total += count;

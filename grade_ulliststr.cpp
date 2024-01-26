@@ -106,7 +106,6 @@ testing::AssertionResult checkListContent(ULListStr *const list, std::vector<std
 	std::stringstream failureMessage;
 	failureMessage << "List content mismatch: ";
 	bool contentMismatch = false;
-	list->print(); //delete later
 
 	for(size_t index = 0; index < list->size(); ++index)
 	{
@@ -179,7 +178,6 @@ TEST(ListInsertFront, ThreeItemAdd)
 
 	// then we create a new list with that data
 	ULListStr * populatedList = makeList(contents, false);
-	populatedList->print(); //delete later
 
 	// then we assert that the list contains that data
 	EXPECT_TRUE(checkListContent(populatedList, contents));
@@ -332,16 +330,12 @@ TEST(ListRemove, OneItemBack)
 {
 	ULListStr list;
 
-	//list.push_back("a");
-	list.push_front("a");
+	list.push_back("a");
 
 	ASSERT_EQ("a", list.get(0));
 
-	list.print();
-	//list.pop_back();
-	list.pop_front();
+	list.pop_back();
 
-	list.print();
 
 	ASSERT_EQ(0, list.size());
 }
